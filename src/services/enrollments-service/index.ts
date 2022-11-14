@@ -59,7 +59,7 @@ async function createOrUpdateEnrollmentWithAddress(params: CreateOrUpdateEnrollm
   
   //TO DO - Verificar se o CEP é válido
   if (result.status === 400 || result.data.erro) {
-    throw requestError;
+    throw requestError(400, 'BAD_REQQUEST');
   }
  
   const newEnrollment = await enrollmentRepository.upsert(params.userId, enrollment, exclude(enrollment, "userId"));
